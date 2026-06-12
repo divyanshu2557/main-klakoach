@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "../store";
 import { api, type HomeFeed } from "../lib/api";
 import { SmartImage } from "./SmartImage";
 import { collections as fallbackCollections, recommendations as fallbackRecommendations, trending as fallbackTrending } from "../data";
@@ -18,6 +19,7 @@ export function CollectionsPage() {
   const [active, setActive] = useState<string | null>(null);
   const [home, setHome] = useState<HomeFeed | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
+  const { navigate } = useRouter();
 
   useEffect(() => {
     api.content.home().then(setHome).catch(() => setHome(null));
