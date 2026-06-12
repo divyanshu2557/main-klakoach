@@ -112,10 +112,10 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:py-5">
           {/* Logo */}
-          <button onClick={() => navigate("home")} className="flex items-center gap-3 shrink-0 mr-4 lg:mr-8">
-            <img src="/logo.png" alt="KlaKoach Logo" className="h-10 w-10 object-contain drop-shadow-md brightness-110" />
-            <div>
-              <span className="font-serif text-2xl font-medium tracking-tight text-[#e8dcc4]">klakoach</span>
+          <button onClick={() => navigate("home")} className="flex items-center gap-2 sm:gap-3 shrink-0 mr-2 sm:mr-4 lg:mr-8">
+            <img src="/logo.png" alt="KlaKoach Logo" className="h-8 w-8 sm:h-10 sm:w-10 object-contain drop-shadow-md brightness-110" />
+            <div className="hidden min-[400px]:block">
+              <span className="font-serif text-xl sm:text-2xl font-medium tracking-tight text-[#e8dcc4]">klakoach</span>
             </div>
           </button>
 
@@ -139,7 +139,7 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-1 lg:gap-2 shrink-0">
+          <div className="flex items-center gap-0.5 sm:gap-1 lg:gap-2 shrink-0">
             {/* Search button with keyboard hint */}
             <button
               onClick={() => setSearchOpen(true)}
@@ -165,7 +165,7 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
             {/* Mobile search icon */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="grid h-10 w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] sm:hidden"
+              className="grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] sm:hidden"
             >
               <svg className="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -174,7 +174,7 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
 
             <button
               onClick={() => setGiftFinderOpen(true)}
-              className="grid h-10 w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] sm:hidden"
+              className="grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] sm:hidden"
               aria-label="Open gift finder"
             >
               <svg className="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -188,13 +188,13 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
                 useFilterStore.getState().setWishlistOnly(true);
                 navigate("marketplace");
               }}
-              className="relative grid h-10 w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4]"
+              className="relative grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4]"
             >
               <svg className="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
               </svg>
               {wishlistCount > 0 && (
-                <span className="absolute right-1 top-1 grid h-4 w-4 place-items-center rounded-full bg-[#8a2d3b] text-[9px] font-bold text-white">{wishlistCount}</span>
+                <span className="absolute right-0 top-0 sm:right-1 sm:top-1 grid h-3.5 w-3.5 sm:h-4 sm:w-4 place-items-center rounded-full bg-[#8a2d3b] text-[8px] sm:text-[9px] font-bold text-white">{wishlistCount}</span>
               )}
             </button>
 
@@ -247,12 +247,12 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
             )}
 
             {/* Cart */}
-            <button onClick={() => setOpen(true)} className="relative grid h-10 w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4]">
+            <button onClick={() => setOpen(true)} className="relative grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4]">
               <svg className="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" />
               </svg>
               {cartCount > 0 && (
-                <span className="absolute right-1 top-1 grid h-4 w-4 place-items-center rounded-full bg-[#d4a843] text-[9px] font-bold text-[#1a1510]">{cartCount}</span>
+                <span className="absolute right-0 top-0 sm:right-1 sm:top-1 grid h-3.5 w-3.5 sm:h-4 sm:w-4 place-items-center rounded-full bg-[#d4a843] text-[8px] sm:text-[9px] font-bold text-[#1a1510]">{cartCount}</span>
               )}
             </button>
 
@@ -298,7 +298,7 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="grid h-10 w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] lg:hidden"
+              className="grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] lg:hidden"
             >
               {mobileOpen ? (
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

@@ -120,7 +120,7 @@ export function AIChatWidget() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 left-6 z-[170] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a843] to-[#b8892c] shadow-2xl shadow-[#d4a843]/30 transition hover:scale-105"
+            className="fixed bottom-6 left-6 z-[140] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a843] to-[#b8892c] shadow-2xl shadow-[#d4a843]/30 transition hover:scale-105"
             aria-label="Open AI shopping assistant"
           >
             <svg className="h-6 w-6 text-[#1a1510]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
@@ -140,14 +140,14 @@ export function AIChatWidget() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-[160] bg-black/30 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[130] bg-black/30 backdrop-blur-sm lg:hidden"
             />
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.97 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed bottom-6 left-4 right-4 z-[170] mx-auto flex max-w-sm flex-col overflow-hidden rounded-3xl border border-[#d4c5a9]/15 bg-[#1a1510] shadow-2xl sm:left-6 sm:right-auto sm:w-96"
+              className="fixed bottom-6 left-4 right-4 z-[140] mx-auto flex max-w-sm flex-col overflow-hidden rounded-3xl border border-[#d4c5a9]/15 bg-[#1a1510] shadow-2xl sm:left-6 sm:right-auto sm:w-96"
               style={{ maxHeight: "min(600px, 85vh)" }}
             >
               {/* Header */}
