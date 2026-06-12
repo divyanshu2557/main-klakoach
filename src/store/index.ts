@@ -114,9 +114,13 @@ export const useWishlist = create<WishlistState>()(
 type FilterState = {
   wishlistOnly: boolean;
   setWishlistOnly: (v: boolean) => void;
+  category: string;
+  setCategory: (c: string) => void;
 };
 
 export const useFilterStore = create<FilterState>((set) => ({
   wishlistOnly: false,
   setWishlistOnly: (v) => set({ wishlistOnly: v }),
+  category: "all",
+  setCategory: (c) => set({ category: c }),
 }));

@@ -155,7 +155,7 @@ function Icon({ name, className = "h-4 w-4" }: { name: IconName; className?: str
 
 export function MarketplacePage() {
   const [search, setSearch] = useState("");
-  const [cat, setCat] = useState("all");
+  const { wishlistOnly, setWishlistOnly, category: cat, setCategory: setCat } = useFilterStore();
   const [sort, setSort] = useState("featured");
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -165,7 +165,6 @@ export function MarketplacePage() {
   const [material, setMaterial] = useState<MaterialId>("all");
   const [maxBudget, setMaxBudget] = useState(15000);
   const [inStockOnly, setInStockOnly] = useState(false);
-  const { wishlistOnly, setWishlistOnly } = useFilterStore();
   const [minRating, setMinRating] = useState(0);
   const [view, setView] = useState<ViewMode>("gallery");
   const [compareMode, setCompareMode] = useState(false);

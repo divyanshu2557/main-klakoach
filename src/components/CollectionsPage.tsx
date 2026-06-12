@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "../store";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useRouter, useFilterStore } from "../store";
 import { api, type HomeFeed } from "../lib/api";
 import { SmartImage } from "./SmartImage";
-import { collections as fallbackCollections, recommendations as fallbackRecommendations, trending as fallbackTrending } from "../data";
+import { collections as fallbackCollections } from "../data";
 
 const extendedCollections = [
   ...fallbackCollections,
@@ -13,28 +13,15 @@ const extendedCollections = [
   { title: "Organic Forms", count: "780 Products", image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=800&q=80" },
 ];
 
-const fallbackProducts = [...fallbackRecommendations, ...fallbackTrending.map((t) => ({ ...t, artisan: "klakoach Studio", price: t.price }))];
-
 export function CollectionsPage() {
-  const [active, setActive] = useState<string | null>(null);
   const [home, setHome] = useState<HomeFeed | null>(null);
-  const expandedRef = useRef<HTMLDivElement>(null);
   const { navigate } = useRouter();
 
   useEffect(() => {
     api.content.home().then(setHome).catch(() => setHome(null));
   }, []);
 
-  useEffect(() => {
-    if (active) {
-      setTimeout(() => {
-        expandedRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
-    }
-  }, [active]);
-
   const collectionRows = home?.collections ?? extendedCollections;
-  const allProducts = home?.recommendations ?? fallbackProducts;
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -69,7 +56,20 @@ export function CollectionsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
-              onClick={() => setActive(active === col.title ? null : col.title)}
+              onClick={() => {
+                const slugMap: Record<string, string> = {
+                  "Artisan Metals": "brass-metal",
+                  "Handwoven World": "textiles",
+                  "Textile Stories": "textiles",
+                  "Earth & Clay": "ceramics",
+                  "Organic Forms": "ceramics",
+                  "Lighting & Ambience": "lighting",
+                  "Wabi-Sabi Living": "ceramics",
+                  "Timeless Decor": "woodwork",
+                };
+                useFilterStore.getState().setCategory(slugMap[col.title] || "all");
+                navigate("marketplace");
+              }}
               className="group cursor-pointer"
             >
               <div className="relative h-80 overflow-hidden rounded-2xl bg-[#1a1510]">
@@ -78,8 +78,8 @@ export function CollectionsPage() {
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <p className="font-medium text-[#e8dcc4]">{col.title}</p>
                   <p className="mt-1 text-sm text-[#d4c5a9]/50">{col.count}</p>
-                  <div className={`mt-3 flex items-center gap-1 text-xs text-[#d4a843] transition-all duration-300 ${active === col.title ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-                    <span>Explore</span>
+                  <div className="mt-3 flex items-center gap-1 text-xs text-[#d4a843] transition-all duration-300 opacity-0 group-hover:opacity-100">
+                    <span>Explore Collection</span>
                     <span>→</span>
                   </div>
                 </div>
@@ -87,38 +87,6 @@ export function CollectionsPage() {
             </motion.div>
           ))}
         </div>
-
-        {/* Expanded collection products */}
-        <AnimatePresence>
-          {active && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="mt-12 border-t border-[#d4c5a9]/20 pt-12" ref={expandedRef}>
-                <div className="mb-8 flex items-center justify-between">
-                  <h2 className="font-serif text-3xl text-[#1a1510]">{active}</h2>
-                  <button onClick={() => setActive(null)} className="text-sm text-[#8a7d6b] hover:text-[#1a1510]">Close ✕</button>
-                </div>
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                  {allProducts.slice(0, 4).map((p, i) => (
-                    <motion.div key={p.name} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="group cursor-pointer" onClick={() => navigate("marketplace")}>
-                      <div className="h-64 overflow-hidden rounded-2xl bg-[#e8e0d5]">
-                        <SmartImage src={p.image} alt={p.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                      </div>
-                      <p className="mt-3 font-medium text-[#1a1510]">{p.name}</p>
-                      <p className="text-sm text-[#8a7d6b]">{p.artisan}</p>
-                      <p className="mt-1 font-semibold text-[#1a1510]">{p.price}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Featured banner */}
         <div className="mt-20 overflow-hidden rounded-3xl">
           <div className="relative h-64 md:h-80">
