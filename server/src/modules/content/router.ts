@@ -17,7 +17,7 @@ contentRouter.get("/home", async (_req, res) => {
      LEFT JOIN inventory i ON i.product_id = p.id
      LEFT JOIN reviews r ON r.product_id = p.id
      WHERE p.status = 'ACTIVE'
-     GROUP BY p.id
+     GROUP BY p.id, c.name, c.slug, a.studio_name, i.quantity, i.reserved
      ORDER BY p.featured DESC, p.created_at DESC`
     ).all() as unknown as Array<{
       id: string;
