@@ -84,9 +84,6 @@ export function MobileBottomNav({ onLogin }: { onLogin: () => void }) {
 
   return (
     <>
-      {/* Spacer to prevent content from hiding behind the fixed nav */}
-      <div className="h-20 sm:hidden block w-full" />
-      
       <motion.nav
         initial={{ y: "100%" }}
         animate={{ y: 0 }}

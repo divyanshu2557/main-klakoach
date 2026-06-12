@@ -146,6 +146,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -12, scale: 0.995, filter: "blur(1.5px)" }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="pb-20 sm:pb-0"
           >
             {page === "home" ? (
               <LandingExperience onLogin={() => setLoginOpen(true)} />
