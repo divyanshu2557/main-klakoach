@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: aurum
+      POSTGRES_USER: aurum
+      POSTGRES_PASSWORD: aurum_dev_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: ../server
+    environment:
+      DATABASE_URL: postgresql://aurum:aurum_dev_only@postgres:5432/aurum
+      REDIS_URL: redis://redis:6379
+      JWT_ACCESS_SECRET: change_me
+      JWT_REFRESH_SECRET: change_me
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  postgres_data:

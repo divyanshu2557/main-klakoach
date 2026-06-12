@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --elite-ink: #1a1510;
+  --elite-gold: #d4c5a9;
+  --elite-deep: #17110d;
+  --elite-mint: #0f766e;
+  --elite-amber: #d4a843;
+  --elite-rose: #8a2d3b;
+}
+
+html, body, #root { min-height: 100%; }
+
+body {
+  background: radial-gradient(1400px 500px at 10% -25%, rgba(212, 168, 67, 0.13), transparent 60%),
+    radial-gradient(1200px 420px at 90% -15%, rgba(15, 118, 110, 0.11), transparent 58%),
+    #faf8f5;
+  color: var(--elite-ink);
+}
+
+/* ── Elite surface aurora ── */
+.elite-surface { position: relative; isolation: isolate; }
+
+.elite-surface::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(212, 168, 67, 0.10), transparent 32%),
+    radial-gradient(circle at 82% 22%, rgba(15, 118, 110, 0.09), transparent 34%),
+    radial-gradient(circle at 52% 82%, rgba(138, 45, 59, 0.07), transparent 30%);
+  filter: blur(18px);
+  animation: eliteAurora 24s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.elite-surface::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(23, 17, 13, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 17, 13, 0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+@keyframes eliteAurora {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+  100% { transform: translate3d(2%, 2%, 0) scale(1.07); }
+}
+
+/* ── Shimmer on cards ── */
+.elite-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.elite-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.elite-shimmer:hover::after { transform: translateX(100%); }
+
+/* ── Gold border glow ── */
+.elite-glow {
+  box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.15), 0 8px 32px rgba(23, 17, 13, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+.elite-glow:hover {
+  box-shadow: 0 0 0 1px rgba(212, 168, 67, 0.35), 0 16px 48px rgba(23, 17, 13, 0.18), 0 0 24px rgba(212, 168, 67, 0.08);
+}
+
+/* ── Floating badge pulse ── */
+@keyframes elitePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(0.96); }
+}
+.elite-pulse { animation: elitePulse 2.8s ease-in-out infinite; }
+
+/* ── Scroll progress bar ── */
+.elite-progress {
+  background: linear-gradient(90deg, var(--elite-amber), var(--elite-mint), var(--elite-amber));
+  background-size: 200% 100%;
+  animation: eliteProgressShift 3s linear infinite;
+}
+@keyframes eliteProgressShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ── Noise texture overlay ── */
+.elite-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* ── Smooth scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(212, 197, 169, 0.35); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(212, 197, 169, 0.6); }
+
+/* ── Selection ── */
+::selection { background: rgba(212, 168, 67, 0.22); color: #1a1510; }
+
+/* ── Range input ── */
+input[type="range"] { accent-color: var(--elite-mint); }
