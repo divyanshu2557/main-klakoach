@@ -162,7 +162,15 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
               <span>Gift Finder</span>
             </button>
 
-
+            {/* Mobile search icon */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-full text-[#d4c5a9]/60 transition-colors hover:bg-[#d4c5a9]/10 hover:text-[#e8dcc4] sm:hidden"
+            >
+              <svg className="h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </button>
 
             <button
               onClick={() => setGiftFinderOpen(true)}
