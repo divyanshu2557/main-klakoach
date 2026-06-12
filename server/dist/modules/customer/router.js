@@ -99,7 +99,7 @@ customerRouter.get("/orders", authenticate, requirePermission("cart:checkout"), 
          LEFT JOIN order_items oi ON oi.order_id = o.id
          LEFT JOIN payments p ON p.order_id = o.id
          WHERE o.customer_id = ?
-         GROUP BY o.id
+         GROUP BY o.id, p.status
          ORDER BY o.created_at DESC`)
         .all(customer.id);
     res.json(orders);

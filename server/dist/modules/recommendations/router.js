@@ -116,7 +116,7 @@ recommendationsRouter.get("/", async (req, res) => {
            AND p.id != ?
            AND ABS(p.price_cents - ?) <= ?
            AND COALESCE(i.quantity - i.reserved, 0) > 0
-         GROUP BY p.id
+         GROUP BY p.id, c.name, c.slug, a.studio_name, i.quantity, i.reserved
          ORDER BY avg_rating DESC
          LIMIT 8`)
             .all(target.category_id, target.id, target.price_cents, priceTolerance);
@@ -177,7 +177,7 @@ recommendationsRouter.get("/", async (req, res) => {
            LEFT JOIN inventory i ON i.product_id = p.id
            LEFT JOIN reviews r ON r.product_id = p.id
            WHERE p.status = 'ACTIVE' AND (i.quantity - i.reserved) > 0
-           GROUP BY p.id`)
+           GROUP BY p.id, p.category_id, c.name, c.slug, a.studio_name, i.quantity, i.reserved`)
                 .all();
             // Score and filter
             const scored = allProducts
@@ -206,7 +206,7 @@ recommendationsRouter.get("/", async (req, res) => {
        LEFT JOIN inventory i ON i.product_id = p.id
        LEFT JOIN reviews r ON r.product_id = p.id
        WHERE p.status = 'ACTIVE' AND COALESCE(i.quantity - i.reserved, 0) > 0
-       GROUP BY p.id
+       GROUP BY p.id, c.name, c.slug, a.studio_name, i.quantity, i.reserved
        ORDER BY avg_rating DESC
        LIMIT 12`)
         .all();
