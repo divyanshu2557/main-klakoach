@@ -134,7 +134,7 @@ export function SearchModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[150] bg-[#1a1510]/90 backdrop-blur-2xl"
+          className="fixed inset-0 z-[150] overflow-y-auto bg-[#1a1510]/90 backdrop-blur-2xl"
           onClick={() => setOpen(false)}
         >
           <motion.div
@@ -142,7 +142,7 @@ export function SearchModal() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.22 }}
-            className="mx-auto max-w-2xl px-4 pt-20"
+            className="mx-auto max-w-2xl px-4 pt-20 pb-[calc(2rem+env(safe-area-inset-bottom))]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative">

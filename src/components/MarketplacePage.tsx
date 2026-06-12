@@ -305,7 +305,7 @@ export function MarketplacePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f3ec] text-[#1a1510]">
+    <div className="min-h-screen bg-[#f7f3ec] text-[#1a1510] overflow-x-hidden">
       <div className="relative h-[24rem] overflow-hidden md:h-[31rem]">
         <SmartImage
           src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=2400&q=85"

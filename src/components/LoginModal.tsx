@@ -73,7 +73,7 @@ export function LoginModal({ open, onClose, onLogin }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-      className="fixed inset-0 z-100 grid place-items-center bg-[#1a1510]/80 px-5 backdrop-blur-2xl"
+      className="fixed inset-0 z-100 grid place-items-center overflow-y-auto bg-[#1a1510]/80 px-5 py-8 pb-[calc(2rem+env(safe-area-inset-bottom))] backdrop-blur-2xl"
       role="dialog" aria-modal="true"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >

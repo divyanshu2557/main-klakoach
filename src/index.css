@@ -16,6 +16,8 @@ body {
     radial-gradient(1200px 420px at 90% -15%, rgba(15, 118, 110, 0.11), transparent 58%),
     #faf8f5;
   color: var(--elite-ink);
+  -webkit-tap-highlight-color: transparent;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ── Elite surface aurora ── */

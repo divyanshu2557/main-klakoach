@@ -362,7 +362,7 @@ export function Navbar({ onLogin, onLogout }: { onLogin: () => void; onLogout: (
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="border-t border-[#d4c5a9]/10 bg-[#1a1510] px-6 pb-6 lg:hidden"
+              className="border-t border-[#d4c5a9]/10 bg-[#1a1510] px-6 pb-6 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
             >
               <div className="flex flex-col gap-1 pt-4">
                 {navLinks.map((link) => (
