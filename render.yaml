@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: klakoach-api
+    env: node
+    buildCommand: npm install && npm run server:build
+    startCommand: npm run server:start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: CORS_ORIGINS
+        value: https://main-klakoach.vercel.app
+      # You must manually add these secrets in the Render dashboard:
+      # - DATABASE_URL
+      # - JWT_PRIVATE_KEY
+      # - JWT_PUBLIC_KEY
+      # - RAZORPAY_KEY_ID
+      # - RAZORPAY_KEY_SECRET
+      # - RAZORPAY_WEBHOOK_SECRET
