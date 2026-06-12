@@ -108,11 +108,14 @@ body {
   border-radius: inherit;
 }
 
-/* ── Smooth scrollbar ── */
+/* ── Scrollbar and Utilities ── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(212, 197, 169, 0.35); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(212, 197, 169, 0.6); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ── Selection ── */
 ::selection { background: rgba(212, 168, 67, 0.22); color: #1a1510; }
