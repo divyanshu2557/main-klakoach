@@ -20,6 +20,7 @@ import { GiftFinderModal } from "./components/GiftFinderModal";
 import { SearchModal } from "./components/SearchModal";
 import { TopBar } from "./components/TopBar";
 import { Navbar } from "./components/Navbar";
+import { MobileBottomNav } from "./components/MobileBottomNav";
 import { useSession } from "./store";
 import { useRouter, type Page } from "./store/router";
 import { api } from "./lib/api";
@@ -132,6 +133,11 @@ export default function App() {
           onClose={() => setLoginOpen(false)}
           onLogin={() => setLoginOpen(false)}
         />
+        
+        {/* Mobile Bottom Navigation */}
+        {(role !== "ADMIN" && role !== "admin" && role !== "ARTISAN" && role !== "artisan") && (
+          <MobileBottomNav onLogin={() => setLoginOpen(true)} />
+        )}
 
         <AnimatePresence mode="wait">
           <motion.div
