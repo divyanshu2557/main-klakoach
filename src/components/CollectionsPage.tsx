@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { api, type HomeFeed } from "../lib/api";
 import { SmartImage } from "./SmartImage";
@@ -17,10 +17,19 @@ const fallbackProducts = [...fallbackRecommendations, ...fallbackTrending.map((t
 export function CollectionsPage() {
   const [active, setActive] = useState<string | null>(null);
   const [home, setHome] = useState<HomeFeed | null>(null);
+  const expandedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     api.content.home().then(setHome).catch(() => setHome(null));
   }, []);
+
+  useEffect(() => {
+    if (active) {
+      setTimeout(() => {
+        expandedRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  }, [active]);
 
   const collectionRows = home?.collections ?? extendedCollections;
   const allProducts = home?.recommendations ?? fallbackProducts;
@@ -86,14 +95,14 @@ export function CollectionsPage() {
               exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="mt-12 border-t border-[#d4c5a9]/20 pt-12">
+              <div className="mt-12 border-t border-[#d4c5a9]/20 pt-12" ref={expandedRef}>
                 <div className="mb-8 flex items-center justify-between">
                   <h2 className="font-serif text-3xl text-[#1a1510]">{active}</h2>
                   <button onClick={() => setActive(null)} className="text-sm text-[#8a7d6b] hover:text-[#1a1510]">Close ✕</button>
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                   {allProducts.slice(0, 4).map((p, i) => (
-                    <motion.div key={p.name} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="group cursor-pointer">
+                    <motion.div key={p.name} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="group cursor-pointer" onClick={() => navigate("marketplace")}>
                       <div className="h-64 overflow-hidden rounded-2xl bg-[#e8e0d5]">
                         <SmartImage src={p.image} alt={p.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                       </div>
