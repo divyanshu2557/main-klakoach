@@ -66,7 +66,7 @@ function Hero({ onLogin, onNavigate, home }: { onLogin: () => void; onNavigate: 
       <div className="relative z-10 mx-auto grid min-h-[92vh] max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-16 md:grid-cols-2 lg:gap-20">
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
           <p className="mb-6 text-xs uppercase tracking-[0.4em] text-[#d4c5a9]/60">klakoach</p>
-          <h1 className="font-serif text-4xl sm:text-5xl leading-[1.08] tracking-[-0.03em] text-[#e8dcc4] md:text-7xl lg:text-[5.5rem]">
+          <h1 className="font-serif text-fluid-h1 tracking-[-0.03em] text-[#e8dcc4]">
             {hero?.title ?? "The luxury marketplace for objects with a human pulse."}
           </h1>
           <p className="mt-8 max-w-lg text-lg leading-7 text-[#d4c5a9]/60">
