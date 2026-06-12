@@ -498,7 +498,8 @@ export function AdminPage({ onLogout }: { onLogout: () => void }) {
                   {users.length === 0 ? (
                     <div className="flex h-48 items-center justify-center text-white/30">No users found</div>
                   ) : (
-                    <div className="overflow-hidden rounded-[1.75rem] border border-white/10">
+                  <div className="overflow-x-auto rounded-[1.75rem] border border-white/10">
+                    <div className="min-w-[600px]">
                       {users.map((u) => (
                         <div key={u.id} className="grid grid-cols-[1fr_auto_auto_auto] items-center gap-4 border-b border-white/10 bg-black/20 p-4 last:border-b-0">
                           <div>
@@ -512,6 +513,7 @@ export function AdminPage({ onLogout }: { onLogout: () => void }) {
                         </div>
                       ))}
                     </div>
+                  </div>
                   )}
                 </div>
               )}

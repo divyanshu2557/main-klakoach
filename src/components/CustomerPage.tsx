@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { api, type Order, type Product, type AppNotification, type CustomerProfile, type OrderItem } from "../lib/api";
+import { api, type Product, type AppNotification, type CustomerProfile } from "../lib/api";
 import { useCart } from "../store";
 import { ReceiptModal } from "./ReceiptModal";
 
@@ -8,13 +8,13 @@ type Tab = "curated" | "orders" | "wishlist" | "notifications" | "profile" | "co
 
 export function CustomerPage() {
   const [tab, setTab] = useState<Tab>("curated");
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
   const [wishlistItems, setWishlistItems] = useState<Product[]>([]);
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
   const [profile, setProfile] = useState<CustomerProfile | null>(null);
   
   const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
-  const [orderItems, setOrderItems] = useState<Record<string, OrderItem[]>>({});
+  const [orderItems, setOrderItems] = useState<Record<string, any[]>>({});
   const [curatedItems, setCuratedItems] = useState<Product[]>([]);
   const [showReceiptId, setShowReceiptId] = useState<string | null>(null);
 

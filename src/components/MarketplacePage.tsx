@@ -803,7 +803,7 @@ export function MarketplacePage() {
                       <h2 className="mt-2 font-serif text-4xl leading-tight tracking-[-0.02em] text-[#172e2a]">{quickView.title}</h2>
                       <p className="mt-2 text-sm text-[#76695a]">{quickView.artisan}</p>
                     </div>
-                    <button onClick={() => setQuickView(null)} className="grid h-10 w-10 place-items-center rounded-full border border-[#d8c8aa] text-[#5e5145] hover:bg-white">
+                    <button onClick={() => setQuickView(null)} className="grid h-11 w-11 place-items-center rounded-full border border-[#d8c8aa] text-[#5e5145] hover:bg-white">
                       ×
                     </button>
                   </div>
@@ -857,7 +857,12 @@ export function MarketplacePage() {
 
       <AnimatePresence>
         {compareMode && compareProducts.length > 0 && (
-          <motion.div initial={{ y: 120, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 120, opacity: 0 }} className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-5xl rounded-lg border border-[#d8c8aa] bg-[#17110d]/96 p-4 text-[#f3ead8] shadow-2xl backdrop-blur">
+          <motion.div 
+            initial={{ y: 120, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 120, opacity: 0 }} 
+            drag="y" dragConstraints={{ top: 0, bottom: 0 }} dragElastic={0.2}
+            onDragEnd={(_e, info) => { if (info.offset.y > 50) setCompareIds([]); }}
+            className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-5xl rounded-lg border border-[#d8c8aa] bg-[#17110d]/96 p-4 text-[#f3ead8] shadow-2xl backdrop-blur"
+          >
             <div className="mb-3 flex items-center justify-between gap-4">
               <p className="text-sm font-semibold">{compareProducts.length}/3 selected for comparison</p>
               <button onClick={() => setCompareIds([])} className="rounded-lg border border-white/15 px-3 py-1.5 text-xs font-semibold text-[#d4c5a9] hover:text-white">
