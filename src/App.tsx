@@ -43,6 +43,7 @@ const pageComponents: Record<string, React.ReactNode> = {
   about: <AboutPage />,
   "care-track-order": <TrackOrderPage />,
   "care-returns-refunds": <ReturnsRefundsPage />,
+  account: <CustomerPage />,
   ...Object.fromEntries(advancedPages.map((page) => [page, <AdvancedFooterPage page={page} />])),
 };
 
